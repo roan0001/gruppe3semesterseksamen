@@ -44,6 +44,7 @@ EventsPage
 │ │ ├── billede
 │ │ ├── titel
 │ │ ├── dato + scene
+├── Lineup & tidsplan
 │ │ ├── beskrivelse
 │ │ └── READ MORE knap (DecorativeBox)
 │ └── Pagination (1 2 3 næste >)
