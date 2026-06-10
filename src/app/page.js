@@ -35,7 +35,8 @@ export default async function Home() {
       <Audio />
       <LatestVideo />
       <ReviewContainer testimonials={testimonials} />
-      <NewsSubsriberContainer /> <Footer />
+      <NewsSubsriberContainer>WANT THE LATES NIGHT CLUB NEWS</NewsSubsriberContainer>
+      <Footer />
     </div>
   );
 }

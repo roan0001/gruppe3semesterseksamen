@@ -4,12 +4,11 @@ import { useState } from "react";
 import { z } from "zod";
 import Button from "@/components/(H_GlobalComponents)/Btn";
 
-// Zod schema — definerer reglerne
 const emailSchema = z.object({
   email: z.string().min(1, "Please enter a email").email("Please enter a valid email"),
 });
 
-const NewsSubsriberContainer = () => {
+const NewsSubscriberContainer = ({ children, className = "" }) => {
   const [email, setEmail] = useState("");
   const [error, setError] = useState("");
   const [status, setStatus] = useState(null);
@@ -45,44 +44,42 @@ const NewsSubsriberContainer = () => {
   };
 
   return (
-    <main>
-      <div className="flex items-center justify-center px-8 py-15 pb-20 bg-black max-w-[2200px] mx-auto">
-        <div className="w-full max-w-[420px]">
-          <p className="text-lg uppercase font-normal text-white text-center mb-[0.6rem]">WANT THE LATES NIGHT CLUB NEWS</p>
-          <p className="text-sm text-white text-center mb-8 leading-[1.6]">
-            Subscribe to our newsletter and never miss an <span className="text-nightclub-pink">Event</span>
-          </p>
+    <div className={`flex items-center justify-center px-8 py-15 pb-20 bg-black max-w-[2200px]  text-white   ${className}`}>
+      <div className="text-lg uppercase font-normal text-white text-center mb-[0.6rem] ">
+        <div className="mb-2">{children}</div>
+        <p className="text-xs sm:text-sm text-white text-center mb-8 normal-case leading-[1.6]">
+          Subscribe to our newsletter and never miss an <span className="text-nightclub-pink">Event</span>
+        </p>
 
-          {status === "success" && <p className="text-green-400 text-sm text-center mb-4">Successfully signed up for newsletter!</p>}
+        {status === "success" && <p className="text-green-400 text-sm text-center mb-4">Successfully signed up for newsletter!</p>}
 
-          {status === "conflict" && <p className="text-nightclub-pink text-sm text-center mb-4">This email is already signed up for newsletter.</p>}
+        {status === "conflict" && <p className="text-nightclub-pink text-sm text-center mb-4">This email is already signed up for newsletter.</p>}
 
-          <div className="flex flex-col gap-2">
-            <div className="flex items-center gap-4">
-              <input
-                type="email"
-                placeholder="Enter your email"
-                value={email}
-                onChange={(e) => {
-                  setEmail(e.target.value);
-                  setError("");
-                  setStatus(null);
-                }}
-                className="border-b border-white w-72 text-white placeholder:text-white/50 bg-transparent px-4 py-3 hover:border-nightclub-pink focus:outline-none"
-              />
-              <Button label="SUBSCRIBE" onClick={handleSubmit} className="inline-flex m-6" />
-            </div>
-
-            {error && (
-              <p className="text-red-400 text-xs ml-4" role="alert">
-                {error}
-              </p>
-            )}
+        <div className="flex flex-col gap-2 justify-center items-center">
+          <div className="flex flex-col sm:flex-row items-center gap-4">
+            <input
+              type="email"
+              placeholder="Enter your email"
+              value={email}
+              onChange={(e) => {
+                setEmail(e.target.value);
+                setError("");
+                setStatus(null);
+              }}
+              className="border-b border-white w-full sm:w-72 text-white placeholder:text-white/50 bg-transparent px-4 py-3 hover:border-nightclub-pink focus:outline-none text-sm"
+            />
+            <Button label="SUBSCRIBE" onClick={handleSubmit} className="inline-flex m-6 " />
           </div>
+
+          {error && (
+            <p className="text-red-400 text-xs ml-4" role="alert">
+              {error}
+            </p>
+          )}
         </div>
       </div>
-    </main>
+    </div>
   );
 };
 
-export default NewsSubsriberContainer;
+export default NewsSubscriberContainer;

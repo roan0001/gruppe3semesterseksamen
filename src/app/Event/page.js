@@ -1,6 +1,7 @@
 import Navigation from "@/components/(A_NavigationComponent)/(Nav)/Navigation";
 import LilleHero from "@/components/(A_NavigationComponent)/(Titles)/PageTitle";
 import EventsList from "@/components/(C_EventsComponents)/EventsList";
+import NewsSubsriberContainer from "@/components/(B_ForsideComponents)/(8_Subsrcibe)/NewsSubscribeContainer";
 import Footer from "@/components/(G_FooterComponents)/Footer";
 
 export default async function EventsPage({ searchParams }) {
@@ -19,7 +20,7 @@ export default async function EventsPage({ searchParams }) {
       <LilleHero className="text-3xl md:text-5xl">EVENTS</LilleHero>
 
       {!Array.isArray(events) || events.length === 0 ? <p className="text-white text-center mt-10">No events found.</p> : <EventsList events={events} currentPage={page} totalPages={totalPages} />}
-
+      <NewsSubsriberContainer>dont miss an event!</NewsSubsriberContainer>
       <Footer />
     </main>
   );
