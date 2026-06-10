@@ -54,8 +54,9 @@ const ContactUsForm = () => {
             </span>
           )}
         </div>
-
-        <Btn type="submit" label={isPending ? "SENDING..." : "SEND"} disabled={isPending} className="self-end" />
+        <div className="self-end [&_.relative.flex.h-px]:w-[300%]">
+          <Btn type="submit" label={isPending ? "SENDING..." : "SEND"} disabled={isPending} className="px-10" />
+        </div>
       </form>
     </div>
   );
