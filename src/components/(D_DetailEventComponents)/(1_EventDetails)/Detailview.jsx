@@ -50,12 +50,12 @@ const Detailview = async ({ slug }) => {
           <div className="md:w-2/3">
             <p className="text-gray-300 text-sm leading-relaxed mb-6">{event.content}</p>
 
-            <div className="flex flex-row justify-between sm:justify-start gap-4 mt-6">
-              <div className="px-5">
-                <Button href={`/BookTable?eventId=${event.id}`} label="BOOK NOW" />
-              </div>
+            <div className="flex flex-row justify-between gap-4 mt-6">
               <div className="px-10">
                 <Button href="/Event" label="BACK TO EVENTS" />
+              </div>
+              <div className="px-5">
+                <Button href={`/BookTable?eventId=${event.id}`} label="BOOK NOW" />
               </div>
             </div>
           </div>
