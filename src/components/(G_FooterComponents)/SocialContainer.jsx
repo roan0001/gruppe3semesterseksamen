@@ -2,7 +2,7 @@ import { FaTwitter } from "react-icons/fa";
 
 const tweets = [
   { id: 1, text: "It is a long established fact that a reader will be distracted by the readable...", time: "5 hours ago" },
-  { id: 2, text: "It is a long established fact that a reader will be distracted by the readable...", time: "5 hours ago" },
+  { id: 2, text: "Experience the electrifying beats of DJ Kai at Club Nova. Doors open at 10 PM, and the rythm never stops. Get ready for a night of unforgettable music!", time: "5 hours ago" },
 ];
 
 export default function SocialContainer() {
