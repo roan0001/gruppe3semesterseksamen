@@ -84,7 +84,7 @@ export default function ReserveTable({ event, eventId, apiUrl, initialOccupiedTa
     <div>
       {/* Event-vælger — vis kun hvis man IKKE er kommet med et eventId fra URL */}
       {!eventId && upcomingEvents.length > 0 && (
-        <div className="mx-6 sm:mx-10 lg:mx-20 mb-6">
+        <div className="mx-6 sm:mx-10 lg:mx-20 mb-4">
           <label className="block text-nightclub-pink text-[10px] tracking-[0.2em] uppercase mb-2">Book table for event (pick event)</label>
           <div className="relative">
             <select value={selectedEventId ?? ""} onChange={handleEventSelect} className="w-full bg-transparent border border-white text-white text-sm tracking-wider px-4 py-3 outline-none appearance-none cursor-pointer focus:border-nightclub-pink transition-colors" style={{ colorScheme: "dark" }}>
@@ -108,6 +108,9 @@ export default function ReserveTable({ event, eventId, apiUrl, initialOccupiedTa
           </div>
         </div>
       )}
+      <div className="mx-6 sm:mx-10 lg:mx-20 mb-6">
+        <label className="block text-gray-500 text-[12px]  mt-0.5"> Want to book table without event? (Leave empty)</label>
+      </div>
       {/* Vis valgt event info */}
       // nu kan man vælge imellem aktive events
       {activeEvent && (
@@ -123,7 +126,7 @@ export default function ReserveTable({ event, eventId, apiUrl, initialOccupiedTa
                 year: "numeric",
               })}
             </span>
-          )}
+          )}{" "}
         </div>
       )}
       <PickTable onSelectTable={handleSelectTable} selectedTable={selectedTable} occupiedTables={occupiedTables} />
