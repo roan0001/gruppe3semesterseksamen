@@ -17,7 +17,7 @@ export default function MusikListe({ tracks, onSelect, currentTrack }) {
   return (
     <>
       <div className="flex flex-col items-center w-full md:hidden">
-        <div className="relative w-full aspect-square">
+        <div className="relative w-48 aspect-square">
           <img src={currentTrack?.image} alt={currentTrack?.title} className="w-full h-full object-cover " />
           <div className="absolute inset-0 pointer-events-none">
             <PinkFrame />
@@ -43,7 +43,7 @@ export default function MusikListe({ tracks, onSelect, currentTrack }) {
             return (
               <div key={i} className="flex flex-col items-center cursor-pointer flex-1 min-w-0" onClick={() => onSelect(track)}>
                 <div className="relative w-full aspect-square group">
-                  <img src={track.image} className="w-full h-full object-cover shadow" />
+                  <img src={track.image} className="w-full h-full object-cover shadow " />
                   <div className={`absolute z-10 inset-0 transition-opacity duration-300 pointer-events-none scale-y-[-1] ${isSelected ? "opacity-100" : "opacity-0 group-hover:opacity-100"}`}>
                     <PinkFrame />
                   </div>
