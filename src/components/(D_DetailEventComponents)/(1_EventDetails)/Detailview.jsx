@@ -40,7 +40,7 @@ const Detailview = async ({ slug }) => {
             <p className="text-nightclub-pink text-lg tracking-widest uppercase mb-2">Schedule</p>
             {event.schedule.map((item, index) => (
               <p key={index} className="text-gray-300 text-sm">
-                {item.time} — {item.label}
+                {new Date(`1970-01-01T${item.time}`).toLocaleTimeString("en-US", { hour: "2-digit", minute: "2-digit", hour12: true })} — {item.label}
               </p>
             ))}
           </div>
@@ -48,7 +48,14 @@ const Detailview = async ({ slug }) => {
 
         <div className="flex flex-col md:flex-row gap-12">
           <div className="md:w-2/3">
-            <p className="text-gray-300 text-sm leading-relaxed mb-6">{event.content}</p>
+            {event.content.split("\n").map(
+              (paragraph, index) =>
+                paragraph.trim() && (
+                  <p key={index} className="text-gray-300 text-sm leading-relaxed mb-4">
+                    {paragraph}
+                  </p>
+                ),
+            )}
 
             <div className="flex flex-row justify-between gap-4 mt-6">
               <div className="px-10">
