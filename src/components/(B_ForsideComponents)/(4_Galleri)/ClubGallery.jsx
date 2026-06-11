@@ -38,22 +38,24 @@ export default function ClubGallery() {
     <div className="flex flex-col items-center mt-10 w-full mb-16 max-w-[2200px] mx-auto">
       <H2>NIGHT CLUB GALLERY</H2>
 
+      {/* Mobile carousel */}
       <div className="md:hidden w-full mt-6">
         <div className="relative w-full aspect-[4/3]">
-          <img src={`${baseUrl}${gallery[carouselIndex]?.asset?.url}`} alt={gallery[carouselIndex]?.asset?.alt || "Gallery image"} className="w-full h-full object-cover" />
+          <img src={`${baseUrl}${gallery[carouselIndex]?.asset?.url}`} alt={gallery[carouselIndex]?.asset?.alt || `Gallery image ${carouselIndex + 1}`} className="w-full h-full object-cover" />
 
           <div className="flex justify-center gap-2 mt-3">
             {gallery.map((_, i) => (
-              <button key={i} onClick={() => setCarouselIndex(i)} className={`w-3 h-3 transition-colors duration-300 m-2 ${carouselIndex === i ? "bg-nightclub-pink" : "bg-white/50"}`} />
+              <button key={i} onClick={() => setCarouselIndex(i)} aria-label={`Go to image ${i + 1}`} aria-current={carouselIndex === i ? "true" : undefined} className={`w-3 h-3 transition-colors duration-300 m-2 ${carouselIndex === i ? "bg-nightclub-pink" : "bg-white/50"}`} />
             ))}
           </div>
         </div>
       </div>
 
+      {/* Desktop grid */}
       <motion.div className="hidden md:grid grid-cols-4 w-full mt-6" variants={container} initial="hidden" whileInView="show" viewport={{ amount: 0.2, once: true }}>
         {gallery.map((img, index) => (
-          <motion.div key={img.id} variants={item} className="relative cursor-pointer aspect-[4/3] overflow-hidden" onClick={() => setSelectedIndex(index)}>
-            <img src={`${baseUrl}${img.asset?.url}`} alt={img.asset?.alt || "Gallery image"} className="w-full h-full object-cover" />
+          <motion.div key={img.id} variants={item} className="relative cursor-pointer aspect-[4/3] overflow-hidden" onClick={() => setSelectedIndex(index)} role="button" tabIndex={0} aria-label={`Open image ${index + 1}: ${img.asset?.alt || "Gallery image"}`} onKeyDown={(e) => e.key === "Enter" && setSelectedIndex(index)}>
+            <img src={`${baseUrl}${img.asset?.url}`} alt={img.asset?.alt || `Gallery image ${index + 1}`} className="w-full h-full object-cover" />
 
             <motion.div className="absolute inset-0 flex items-center justify-center border-t-2 border-b-2 border-nightclub-pink" initial={{ opacity: 0 }} whileHover={{ opacity: 1 }} transition={{ duration: 0.3 }}>
               <div className="absolute inset-0 bg-black opacity-70" />
@@ -64,21 +66,22 @@ export default function ClubGallery() {
         ))}
       </motion.div>
 
+      {/* Lightbox */}
       {selectedImg && (
-        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50" onClick={() => setSelectedIndex(null)}>
+        <div className="fixed inset-0 bg-black/90 backdrop-blur-sm flex items-center justify-center z-50" onClick={() => setSelectedIndex(null)} role="dialog" aria-modal="true" aria-label="Image lightbox">
           <div className="relative flex flex-col items-center bg-black w-fit max-w-full shadow-xl" onClick={(e) => e.stopPropagation()}>
-            <button onClick={goPrev} className="absolute -left-20 top-1/2 -translate-y-1/2 text-white border-2 border-white w-12 h-12 flex items-center justify-center hover:bg-nightclub-pink hover:border-nightclub-pink transition-colors z-20">
+            <button onClick={goPrev} aria-label="Previous image" className="absolute -left-20 top-1/2 -translate-y-1/2 text-white border-2 border-white w-12 h-12 flex items-center justify-center hover:bg-nightclub-pink hover:border-nightclub-pink transition-colors z-20">
               ◀
             </button>
 
-            <img src={selectedImg.asset ? `${baseUrl}${selectedImg.asset.url}` : selectedImg.url} className="w-full max-w-[600px] h-auto max-h-[65vh] object-contain block shadow-xl" alt="Selected" />
+            <img src={selectedImg.asset ? `${baseUrl}${selectedImg.asset.url}` : selectedImg.url} className="w-full max-w-[600px] h-auto max-h-[65vh] object-contain block shadow-xl" alt={selectedImg.asset?.alt || "Selected gallery image"} />
 
             <div className="text-center mt-6 mb-4 px-4">
               <h2 className="text-white text-xl font-bold uppercase">NIGHTCLUB EXPERIENCE</h2>
               <p className="text-white text-sm mt-1">This is our nightclub gallery.</p>
             </div>
 
-            <button onClick={goNext} className="absolute -right-20 top-1/2 -translate-y-1/2 text-white border-2 border-white w-12 h-12 flex items-center justify-center hover:bg-nightclub-pink hover:border-nightclub-pink transition-colors">
+            <button onClick={goNext} aria-label="Next image" className="absolute -right-20 top-1/2 -translate-y-1/2 text-white border-2 border-white w-12 h-12 flex items-center justify-center hover:bg-nightclub-pink hover:border-nightclub-pink transition-colors">
               ▶
             </button>
           </div>

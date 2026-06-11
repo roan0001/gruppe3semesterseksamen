@@ -18,7 +18,7 @@ export default async function Home() {
   const featuredEvents = await eventsRes.json();
 
   return (
-    <div className="flex flex-col" style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }}>
+    <main className="flex flex-col" style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }}>
       <Suspense
         fallback={
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
@@ -37,6 +37,6 @@ export default async function Home() {
       <ReviewContainer testimonials={testimonials} />
       <NewsSubsriberContainer>WANT THE LATES NIGHT CLUB NEWS</NewsSubsriberContainer>
       <Footer />
-    </div>
+    </main>
   );
 }
