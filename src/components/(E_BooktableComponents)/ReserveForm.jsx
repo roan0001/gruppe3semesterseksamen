@@ -3,7 +3,7 @@ import { useState, useEffect } from "react";
 import { IoCheckmarkCircle } from "react-icons/io5";
 import Btn from "@/components/(H_GlobalComponents)/Btn";
 
-const inputBase = "bg-transparent border border-white text-white placeholder:text-gray-500 text-[13px]font-sans px-4 py-3 outline-none w-full transition-colors focus:border-white/60";
+const inputBase = "bg-transparent border border-white text-white placeholder:text-gray-500 text-[13px] font-sans px-4 py-3 outline-none w-full transition-colors focus:border-white/60";
 const inputErr = "bg-transparent border border-nightclub-pink text-white placeholder:text-gray-500 text-[13px] font-sans px-4 py-3 outline-none w-full";
 
 export default function ReserveForm({ selectedTable, eventId, eventDate, onTableConflict, onDatePick, apiUrl }) {
@@ -116,7 +116,7 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
       {showModal && (
         <div className="fixed inset-0 bg-black/80 flex items-center justify-center z-50 px-4">
           <div className="bg-black border border-white rounded-lg p-10 max-w-sm w-full flex flex-col items-center text-center shadow-2xl">
-            <IoCheckmarkCircle className=" text-nightclub-pink text-6xl mb-5" />
+            <IoCheckmarkCircle className="text-nightclub-pink text-6xl mb-5" />
             <h3 className="text-white font-bold text-xl tracking-widest mb-3 uppercase">Reservation Confirmed</h3>
             <p className="text-gray-400 text-sm leading-relaxed mb-8">
               Table {reservedTable} has been reserved.
@@ -136,14 +136,18 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
         </div>
       )}
 
-      {rootError && <div className="mb-5 px-4 py-3 border border-nightclub-pink bg-nightclub-pink/20 rounded text-nightclub-pink text-[12px] ">✗ {rootError}</div>}
+      {rootError && <div className="mb-5 px-4 py-3 border border-nightclub-pink bg-nightclub-pink/20 rounded text-nightclub-pink text-[12px]">✗ {rootError}</div>}
 
       <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6" noValidate>
         {/* Name */}
         <div className="flex flex-col gap-1">
-          <input type="text" placeholder="Your Name" value={fields.name} onChange={set("name")} className={errors.name ? inputErr : inputBase} />
+          //screen reader label
+          <label htmlFor="reserve-name" className="sr-only">
+            Your Name
+          </label>
+          <input id="reserve-name" type="text" placeholder="Your Name" value={fields.name} onChange={set("name")} className={errors.name ? inputErr : inputBase} />
           {errors.name && (
-            <span className="text-nightclub-pink text-[11px] " role="alert">
+            <span className="text-nightclub-pink text-[11px]" role="alert">
               {errors.name}
             </span>
           )}
@@ -151,9 +155,13 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
         {/* Email */}
         <div className="flex flex-col gap-1">
-          <input type="email" placeholder="Your Email" value={fields.email} onChange={set("email")} className={errors.email ? inputErr : inputBase} />
+          //screen reader label
+          <label htmlFor="reserve-email" className="sr-only">
+            Your Email
+          </label>
+          <input id="reserve-email" type="email" placeholder="Your Email" value={fields.email} onChange={set("email")} className={errors.email ? inputErr : inputBase} />
           {errors.email && (
-            <span className="text-nightclub-pinktext-[11px] " role="alert">
+            <span className="text-nightclub-pink text-[11px]" role="alert">
               {errors.email}
             </span>
           )}
@@ -161,9 +169,13 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
         {/* Table */}
         <div className="flex flex-col gap-1">
-          <input type="number" placeholder="Table Number" value={fields.table} readOnly={!!selectedTable} onChange={set("table")} className={`${errors.table ? inputErr : inputBase} ${selectedTable ? "text-nightclub-pink cursor-default" : ""}`} />
+          //screen reader label
+          <label htmlFor="reserve-table" className="sr-only">
+            Table Number
+          </label>
+          <input id="reserve-table" type="number" placeholder="Table Number" value={fields.table} readOnly={!!selectedTable} onChange={set("table")} className={`${errors.table ? inputErr : inputBase} ${selectedTable ? "text-nightclub-pink cursor-default" : ""}`} />
           {errors.table && (
-            <span className="text-nightclub-pink text-[11px] " role="alert">
+            <span className="text-nightclub-pink text-[11px]" role="alert">
               {errors.table}
             </span>
           )}
@@ -171,9 +183,13 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
         {/* Guests */}
         <div className="flex flex-col gap-1">
-          <input type="number" placeholder="Number of Guests" value={fields.guests} onChange={set("guests")} min={1} max={20} className={errors.guests ? inputErr : inputBase} />
+          //screen reader label
+          <label htmlFor="reserve-guests" className="sr-only">
+            Number of Guests
+          </label>
+          <input id="reserve-guests" type="number" placeholder="Number of Guests" value={fields.guests} onChange={set("guests")} min={1} max={20} className={errors.guests ? inputErr : inputBase} />
           {errors.guests && (
-            <span className="text-nightclub-pink text-[11px] " role="alert">
+            <span className="text-nightclub-pink text-[11px]" role="alert">
               {errors.guests}
             </span>
           )}
@@ -182,30 +198,53 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
         {/* Date */}
         {!eventDate ? (
           <div className="flex flex-col gap-1">
-            <input type="date" value={fields.date} onChange={set("date")} min={new Date().toISOString().split("T")[0]} className={errors.date ? inputErr : inputBase} style={{ colorScheme: "dark" }} />
+            //screen reader label
+            <label htmlFor="reserve-date" className="sr-only">
+              Date
+            </label>
+            <input id="reserve-date" type="date" value={fields.date} onChange={set("date")} min={new Date().toISOString().split("T")[0]} className={errors.date ? inputErr : inputBase} style={{ colorScheme: "dark" }} />
             {errors.date && (
-              <span className="text-nightclub-pink text-[11px] " role="alert">
+              <span className="text-nightclub-pink text-[11px]" role="alert">
                 {errors.date}
               </span>
             )}
           </div>
         ) : (
           <div className="flex flex-col gap-1">
-            <input type="text" readOnly value={new Date(eventDate).toLocaleDateString("en-GB", { weekday: "long", day: "numeric", month: "long", year: "numeric" })} className={`${inputBase} text-nightclub-pink cursor-default`} />
+            //screen reader label
+            <label htmlFor="reserve-date-readonly" className="sr-only">
+              Event Date
+            </label>
+            <input
+              id="reserve-date-readonly"
+              type="text"
+              readOnly
+              value={new Date(eventDate).toLocaleDateString("en-GB", {
+                weekday: "long",
+                day: "numeric",
+                month: "long",
+                year: "numeric",
+              })}
+              className={`${inputBase} text-nightclub-pink cursor-default`}
+            />
           </div>
         )}
 
         {/* Phone */}
         <div className="flex flex-col gap-1">
-          <input type="tel" placeholder="Your Phone Number" value={fields.phone} onChange={set("phone")} className={errors.phone ? inputErr : inputBase} />
+          //screen reader label
+          <label htmlFor="reserve-phone" className="sr-only">
+            Your Phone Number
+          </label>
+          <input id="reserve-phone" type="tel" placeholder="Your Phone Number" value={fields.phone} onChange={set("phone")} className={errors.phone ? inputErr : inputBase} />
           {errors.phone && (
-            <span className="text-nightclub-pink text-[11px] " role="alert">
+            <span className="text-nightclub-pink text-[11px]" role="alert">
               {errors.phone}
             </span>
           )}
         </div>
 
-        {/* KNAP - Submit */}
+        {/* Submit */}
         <div className="col-span-1 md:col-span-2 flex justify-end mt-2">
           <Btn type="submit" disabled={isSubmitting}>
             {isSubmitting ? "RESERVING..." : "RESERVE"}
