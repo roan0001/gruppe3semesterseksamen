@@ -2,12 +2,11 @@
 import { useState, useEffect } from "react";
 import PickTable from "./PickTable";
 import ReserveForm from "./ReserveForm";
-//events er taget med
+
 export default function ReserveTable({ event, eventId, apiUrl, initialOccupiedTables = [], allEvents = [] }) {
   const [selectedTable, setSelectedTable] = useState(null);
   const [occupiedTables, setOccupiedTables] = useState(initialOccupiedTables);
 
-  // Hvis man har valgt et event via dropdown
   const [selectedEventId, setSelectedEventId] = useState(eventId ?? null);
   const [selectedEvent, setSelectedEvent] = useState(event ?? null);
 
@@ -17,7 +16,6 @@ export default function ReserveTable({ event, eventId, apiUrl, initialOccupiedTa
     if (t) setSelectedTable(parseInt(t));
   }, []);
 
-  // Når brugeren vælger et event fra dropdown
   const handleEventSelect = async (e) => {
     const id = e.target.value ? parseInt(e.target.value) : null;
 
@@ -32,11 +30,9 @@ export default function ReserveTable({ event, eventId, apiUrl, initialOccupiedTa
     setSelectedEventId(id);
     setSelectedTable(null);
 
-    // Find event fra allEvents
     const found = allEvents.find((ev) => ev.id === id) ?? null;
     setSelectedEvent(found);
 
-    // Hent reserverede borde for dette event
     try {
       const res = await fetch(`${apiUrl}/reservations?eventId=${id}`);
       const reservations = await res.json();
@@ -72,17 +68,15 @@ export default function ReserveTable({ event, eventId, apiUrl, initialOccupiedTa
     setOccupiedTables((prev) => (prev.includes(tableId) ? prev : [...prev, tableId]));
     setSelectedTable(null);
   };
-  // Bestem aktivt event og dets dato
+
   const activeEvent = selectedEvent;
   const activeEventId = selectedEventId;
   const eventDate = activeEvent?.date ?? null;
 
-  // Sortér events efter dato
   const upcomingEvents = Array.isArray(allEvents) ? [...allEvents].sort((a, b) => new Date(a.date) - new Date(b.date)) : [];
 
   return (
     <div>
-      {/* Event-vælger — vis kun hvis man IKKE er kommet med et eventId fra URL */}
       {!eventId && upcomingEvents.length > 0 && (
         <div className="mx-6 sm:mx-10 lg:mx-20 mb-4">
           <label className="block text-nightclub-pink text-[10px] tracking-[0.2em] uppercase mb-2">Book table for event (pick event)</label>
@@ -103,7 +97,7 @@ export default function ReserveTable({ event, eventId, apiUrl, initialOccupiedTa
                 </option>
               ))}
             </select>
-            {/* Pil-ikon */}
+
             <span className="pointer-events-none absolute right-4 top-1/2 -translate-y-1/2 text-white text-xs">▼</span>
           </div>
         </div>
@@ -111,8 +105,7 @@ export default function ReserveTable({ event, eventId, apiUrl, initialOccupiedTa
       <div className="mx-6 sm:mx-10 lg:mx-20 mb-6">
         <label className="block text-gray-500 text-[12px]  mt-0.5"> Want to book table without event? (Leave empty)</label>
       </div>
-      {/* Vis valgt event info */}
-      // nu kan man vælge imellem aktive events
+
       {activeEvent && (
         <div className="mx-6 sm:mx-10 lg:mx-20 mb-4 px-4 py-3 border border-nightclub-pink bg-nightclub-pink/5 rounded">
           <span className="text-nightclub-pink text-[10px] tracking-[0.2em] uppercase block mb-0.5">Event</span>

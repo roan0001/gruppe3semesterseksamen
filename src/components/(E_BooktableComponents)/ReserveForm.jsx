@@ -141,7 +141,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
       <form onSubmit={onSubmit} className="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-6" noValidate>
         {/* Name */}
         <div className="flex flex-col gap-1">
-          //screen reader label
           <label htmlFor="reserve-name" className="sr-only">
             Your Name
           </label>
@@ -155,7 +154,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
         {/* Email */}
         <div className="flex flex-col gap-1">
-          //screen reader label
           <label htmlFor="reserve-email" className="sr-only">
             Your Email
           </label>
@@ -169,7 +167,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
         {/* Table */}
         <div className="flex flex-col gap-1">
-          //screen reader label
           <label htmlFor="reserve-table" className="sr-only">
             Table Number
           </label>
@@ -183,7 +180,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
         {/* Guests */}
         <div className="flex flex-col gap-1">
-          //screen reader label
           <label htmlFor="reserve-guests" className="sr-only">
             Number of Guests
           </label>
@@ -198,7 +194,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
         {/* Date */}
         {!eventDate ? (
           <div className="flex flex-col gap-1">
-            //screen reader label
             <label htmlFor="reserve-date" className="sr-only">
               Date
             </label>
@@ -211,7 +206,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
           </div>
         ) : (
           <div className="flex flex-col gap-1">
-            //screen reader label
             <label htmlFor="reserve-date-readonly" className="sr-only">
               Event Date
             </label>
@@ -232,7 +226,6 @@ export default function ReserveForm({ selectedTable, eventId, eventDate, onTable
 
         {/* Phone */}
         <div className="flex flex-col gap-1">
-          //screen reader label
           <label htmlFor="reserve-phone" className="sr-only">
             Your Phone Number
           </label>
