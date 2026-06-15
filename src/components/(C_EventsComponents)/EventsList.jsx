@@ -18,6 +18,7 @@ const EventsList = ({ events, currentPage, totalPages }) => {
             </Link>
           )}
 
+          {/* AI har assisteret efter flere forsøg med at implementere en simpel pagination-komponent, der viser links til tidligere og næste sider baseret på den aktuelle side (currentPage) og det samlede antal sider (totalPages). Paginationen inkluderer betingelser for at skjule "næste" linket på den sidste side og "tilbage" linket på den første side, hvilket forbedrer navigationen for brugeren. */}
           {Array.from({ length: totalPages }, (_, i) => i + 1).map((pageNum) => (
             <Link key={pageNum} href={`/Event?page=${pageNum}`} className={`hover:text-pink-500 ${currentPage === pageNum ? "text-pink-500" : ""}`}>
               {pageNum}

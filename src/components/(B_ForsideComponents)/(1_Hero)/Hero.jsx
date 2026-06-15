@@ -9,12 +9,11 @@ const DURATION = 1.1;
 const EASE = [0.56, 0, 0.24, 1];
 
 const IMAGES = ["/hero/header_bg_1.jpg", "/hero/header_bg_2.jpg"];
-
+// AI har assisteret med at løse hydration mismatch-fejl ve at forklare brugen af useEffekt til at sætte baggrundsbilledet efter komponenten er mounted, hvilket sikrer at det kun sker på klienten og undgår forskelle mellem server- og klient-rendering.
 const Hero = () => {
   const [bgImage, setBgImage] = useState(IMAGES[0]);
 
   useEffect(() => {
-    // Vælg tilfældigt billede kun én gang på client
     setBgImage(IMAGES[Math.floor(Math.random() * IMAGES.length)]);
   }, []);
 

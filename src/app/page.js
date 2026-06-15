@@ -20,7 +20,6 @@ export default async function Home() {
 
   return (
     <main className="flex flex-col relative">
-      {/* Baggrundsbillede via Next.js Image i stedet for CSS */}
       <Image src="/backgrounds/pattern_bg.jpg" alt="" aria-hidden="true" fill className="object-cover object-center -z-10" quality={75} priority />
 
       <Suspense
