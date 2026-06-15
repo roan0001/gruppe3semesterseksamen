@@ -1,4 +1,5 @@
 import { Suspense } from "react";
+import Image from "next/image";
 import Hero from "@/components/(B_ForsideComponents)/(1_Hero)/Hero";
 import Navigation from "@/components/(A_NavigationComponent)/(Nav)/Navigation";
 import WelcomeClub from "@/components/(B_ForsideComponents)/(2_WelcomeInClubCards)/WelcomeClubContainer";
@@ -18,7 +19,10 @@ export default async function Home() {
   const featuredEvents = await eventsRes.json();
 
   return (
-    <main className="flex flex-col" style={{ backgroundImage: "url('/backgrounds/pattern_bg.jpg')" }}>
+    <main className="flex flex-col relative">
+      {/* Baggrundsbillede via Next.js Image i stedet for CSS */}
+      <Image src="/backgrounds/pattern_bg.jpg" alt="" aria-hidden="true" fill className="object-cover object-center -z-10" quality={75} priority />
+
       <Suspense
         fallback={
           <div className="fixed inset-0 z-50 flex items-center justify-center bg-black">
