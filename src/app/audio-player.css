@@ -1,43 +1,43 @@
 /* Baggrund */
 .rhap_container {
-  background: #000 !important;
-  color: #fff !important;
+  background: black !important;
+  color: white !important;
   border-radius: 8px;
 }
 
 /* Progress bar (den pink linje) */
 .rhap_progress-bar {
-  background: #444 !important;
+  background: oklch(45% 0.01 264) !important;
 }
 
 .rhap_progress-filled {
-  background: #ff2bb3 !important; /* Pink */
+  background: oklch(65% 0.23 10) !important; /* Pink */
 }
 
 .rhap_progress-indicator {
-  background: #ff2bb3 !important; /* Pink knob */
-  box-shadow: 0 0 5px #ff2bb3;
+  background: oklch(65% 0.23 10) !important; /* Pink knob */
+  box-shadow: 0 0 5px oklch(65% 0.23 10);
 }
 
 /* Volume bar */
 .rhap_volume-bar {
-  background: #444 !important;
+  background: oklch(45% 0.01 264) !important;
 }
 
 .rhap_volume-filled {
-  background: #ff2bb3 !important;
+  background: oklch(65% 0.23 10) !important;
 }
 
 .rhap_volume-indicator {
-  background: #ff2bb3 !important;
-  box-shadow: 0 0 5px #ff2bb3;
+  background: oklch(65% 0.23 10) !important;
+  box-shadow: 0 0 5px oklch(65% 0.23 10);
 }
 
 /* Knapper */
 .rhap_button-clear {
-  color: #fff !important;
+  color: white !important;
 }
 
 .rhap_button-clear:hover {
-  color: #ff2bb3 !important;
+  color: oklch(65% 0.23 10) !important;
 }
